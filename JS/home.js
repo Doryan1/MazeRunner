@@ -1,3 +1,4 @@
 function buttonclick() {
-    window.location = "http://www.google.com"
+    alert("THE LINK IS COMmENTED OUT")
+        //window.location = "http://www.google.com"
 }
