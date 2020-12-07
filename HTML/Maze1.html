@@ -7,48 +7,10 @@
     <title>
         Esposito Maze
     </title>
+
 </head>
 
-
-<script>
-    let canvas = document.getElementById("#canvas");
-    let ctx = canvas.getContext('2d');
-
-
-    let map = [ // 1s equal walls, 0s spaces moveable
-        [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, ],
-        [1, 0, 0, 0, 0, 0, 1, 1, 1, 0, ],
-        [1, 1, 1, 0, 1, 0, 1, 0, 0, 0, ],
-        [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, ],
-        [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, ],
-        [1, 0, 1, 1, 0, 0, 1, 0, 1, 0, ],
-        [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, ],
-        [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, ],
-        [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, ],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, -1, ]
-    ];
-
-    function drawMap(m) {
-        for (i = 0; i < m.length; i++) {
-            for (j = 0; j < m[i].length; j++) {
-                if (m[y][x] === 1) {
-                    ctx.fillStyle = "black";
-                    ctx.fillRect(x * 50, y * 50, 50, 50);
-
-                } else if (m[y][x] === -1) { //winning spot
-                    ctx.fillStyle = "blue";
-                    ctx.fillRect(x * 50, y * 50, 50, 50);
-                }
-            }
-        }
-    };
-
-    window.onload = funtion() {
-        drawMap(map);
-    }
-</script>
-
-<body onload="grid()" bgcolor="red">
+<body bgcolor="red">
     <center>
         <BR>
         <BR>
@@ -56,4 +18,42 @@
         <canvas id="canvas" width="500px" height="600px">
         </canvas>
     </center>
+    <script>
+        let c = document.getElementById('canvas');
+        let ctx = c.getContext('2d');
+
+
+        let map = [ // 1s equal walls, 0s spaces moveable
+            [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, ],
+            [1, 0, 0, 0, 0, 0, 1, 1, 1, 0, ],
+            [1, 1, 1, 0, 1, 0, 1, 0, 0, 0, ],
+            [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, ],
+            [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, ],
+            [1, 0, 1, 1, 0, 0, 1, 0, 1, 0, ],
+            [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, ],
+            [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, ],
+            [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, ],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, -1, ]
+        ];
+
+        function drawMap(m) {
+            for (i = 0; i < m.length; i++) {
+                for (j = 0; j < m[i].length; j++) {
+                    if (m[y][x] === 1) {
+                        ctx.beginPath();
+                        ctx.fillStyle = "black";
+                        ctx.fillRect(x * 50, y * 50, 50, 50);
+
+                    } else if (m[y][x] === -1) { //winning spot
+                        ctx.fillStyle = "blue";
+                        ctx.fillRect(x * 50, y * 50, 50, 50);
+                    }
+                }
+            }
+        }
+
+        window.onload = funtion() {
+            drawMap(map);
+        }
+    </script>
 </body>
