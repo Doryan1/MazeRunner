@@ -24,36 +24,78 @@
 
 
         let map = [ // 1s equal walls, 0s spaces moveable
-            [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, ],
-            [1, 0, 0, 0, 0, 0, 1, 1, 1, 0, ],
-            [1, 1, 1, 0, 1, 0, 1, 0, 0, 0, ],
-            [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, ],
-            [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, ],
-            [1, 0, 1, 1, 0, 0, 1, 0, 1, 0, ],
-            [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, ],
-            [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, ],
-            [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, ],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, -1, ]
+            [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+            [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         ];
 
         function drawMap(m) {
             for (i = 0; i < m.length; i++) {
                 for (j = 0; j < m[i].length; j++) {
-                    if (m[y][x] === 1) {
+                    if (m[i][j] === 1) {
                         ctx.beginPath();
                         ctx.fillStyle = "black";
-                        ctx.fillRect(x * 50, y * 50, 50, 50);
+                        ctx.fillRect(i * 50, j * 50, 50, 50);
 
-                    } else if (m[y][x] === -1) { //winning spot
+                    } else if (m[i][j] === -1) { //winning spot
                         ctx.fillStyle = "blue";
-                        ctx.fillRect(x * 50, y * 50, 50, 50);
+                        ctx.fillRect(i * 50, j * 50, 50, 50);
                     }
                 }
             }
         }
 
-        window.onload = funtion() {
+        function drawPlayer() {
+            ctx.beginPath();
+            ctx.fillStyle = "white";
+            ctx.fillRect = (0, 0, 50, 50);
+        }
+
+        function move(x, y) {
+
+        }
+
+        let player = {
+            x: 0,
+            y: 0,
+            newX: 0,
+            newY: 0
+        }
+
+        window.onkeydown = function(e) {
+            if (e.keyCode === 38) {
+                player.newY = player.y + 50;
+                player.newX = player.x;
+                console.log('up');
+            }
+            if (e.keyCode === 37) {
+                player.newX = player.x - 50;
+                player.newY = player.y;
+                console.log('left');
+            }
+            if (e.keyCode === 40) {
+                player.newY = player.y - 50;
+                player.newX = player.x;
+                console.log('down');
+            }
+            if (e.keyCode === 39) {
+                player.newX = player.x + 50;
+                player.newY = player.y;
+                console.log('right');
+            }
+        }
+
+
+        window.onload = function() {
             drawMap(map);
+            drawPlayer();
         }
     </script>
 </body>
