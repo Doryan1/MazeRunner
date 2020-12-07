@@ -36,8 +36,11 @@
             [0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, -1],
         ];
 
+        let collbox = [];
+
         function drawMap(m) {
             for (i = 0; i < m.length; i++) {
+                collbox.push([]);
                 for (j = 0; j < m[i].length; j++) {
                     if (m[i][j] === 1) {
                         ctx.beginPath();
@@ -48,18 +51,28 @@
                         ctx.fillStyle = "blue";
                         ctx.fillRect(i * 50, j * 50, 50, 50);
                     }
+                    collbox[i].push({
+                        x: j * 50,
+                        y: i * 50,
+                        status: m[i][j]
+                    } === 1 ? 1 : (m[i][j] === -1 ? -1 : 0));
                 }
             }
         }
 
-        function drawPlayer() {
+        function drawPlayer(x, y) {
             ctx.beginPath();
             ctx.fillStyle = "white";
-            ctx.fillRect(0, 0, 50, 50);
+            ctx.fillRect(x, y, 50, 50);
         }
 
         function move(x, y) {
+            ctx.clearRect(0, 0, 500, 600);
+            drawPlayer(x, y);
+            drawMap(map);
 
+            player.x = player.newX;
+            player.y = player.newY;
         }
 
         let player = {
@@ -71,7 +84,7 @@
 
         window.onkeydown = function(e) {
             if (e.keyCode === 38) {
-                player.newY = player.y + 50;
+                player.newY = player.y - 50;
                 player.newX = player.x;
                 console.log('up');
             }
@@ -81,7 +94,7 @@
                 console.log('left');
             }
             if (e.keyCode === 40) {
-                player.newY = player.y - 50;
+                player.newY = player.y + 50;
                 player.newX = player.x;
                 console.log('down');
             }
@@ -90,12 +103,15 @@
                 player.newY = player.y;
                 console.log('right');
             }
+            move(player.newX, player.newY);
+            console.log(player);
         }
 
 
         window.onload = function() {
             drawMap(map);
-            drawPlayer();
+            drawPlayer(0, 0);
+            console.log(collbox([]));
         }
     </script>
 </body>
