@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="CSS\maze1.css">
+    <title>
+        Esposito Maze
+    </title>
+
+</head>
+
+<body bgcolor="red">
+    <center>
+        <BR>
+        <BR>
+        <h1>Maze #1</h1>
+        <canvas id="canvas" width="500px" height="600px">
+        </canvas>
+    </center>
+    <script>
+        let c = document.getElementById('canvas');
+        let ctx = c.getContext('2d');
+
+
+        let map = [ // 1s equal walls, 0s spaces moveable
+            [0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0],
+            [0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0],
+            [0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0],
+            [0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+            [1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0],
+            [0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
+            [0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1],
+            [0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, -1],
+        ];
+
+        let collbox = [];
+
+        function drawMap(m) {
+            for (i = 0; i < m.length; i++) {
+                collbox.push([]);
+                for (j = 0; j < m[i].length; j++) {
+                    if (m[i][j] === 1) {
+                        ctx.beginPath();
+                        ctx.fillStyle = "black";
+                        ctx.fillRect(i * 50, j * 50, 50, 50);
+
+                    } else if (m[i][j] === -1) { //winning spot
+                        ctx.fillStyle = "blue";
+                        ctx.fillRect(i * 50, j * 50, 50, 50);
+                    }
+                    collbox[i].push({
+                        x: j * 50,
+                        y: i * 50,
+                        status: m[i][j]
+                    } === 1 ? 1 : (m[i][j] === -1 ? -1 : 0));
+                }
+            }
+        }
+
+        function drawPlayer(x, y) {
+            ctx.beginPath();
+            ctx.fillStyle = "white";
+            ctx.fillRect(x, y, 50, 50);
+        }
+
+        function move(x, y) {
+            ctx.clearRect(0, 0, 500, 600);
+            drawPlayer(x, y);
+            drawMap(map);
+
+            player.x = player.newX;
+            player.y = player.newY;
+        }
+
+        let player = {
+            x: 0,
+            y: 0,
+            newX: 0,
+            newY: 0
+        }
+
+        function checkColi() {
+            let b;
+            for (i = 0; i < 10; i++) {
+                for (j = 0; j < 11; j++)
+                    b = collbox[i][j];
+
+                if (player.newX === b.x && player.newY === b.y) {
+                    if (b.status === 1) {
+                        console.log('hit rock');
+                    } else if (b.status === -1) {
+                        console.log('WIn');
+                        move(player.newY, player.newX);
+                    } else {
+                        move(player.newY, player.newX);
+                    }
+
+                } else if (player.newX < 0 || player.newX > 450 || player.newY < 0 || player.newY > 550) {
+                    console.log('hit walllllll!');
+                }
+            }
+        }
+
+
+        window.onkeydown = function(e) {
+            if (e.keyCode === 38) {
+                player.newY = player.y - 50;
+                player.newX = player.x;
+                console.log('up');
+            }
+            if (e.keyCode === 37) {
+                player.newX = player.x - 50;
+                player.newY = player.y;
+                console.log('left');
+            }
+            if (e.keyCode === 40) {
+                player.newY = player.y + 50;
+                player.newX = player.x;
+                console.log('down');
+            }
+            if (e.keyCode === 39) {
+                player.newX = player.x + 50;
+                player.newY = player.y;
+                console.log('right');
+            }
+            checkColi();
+            move(player.newX, player.newY);
+            console.log(player);
+        }
+
+
+        window.onload = function() {
+            drawMap(map);
+            drawPlayer(0, 0)
+        }
+    </script>
+</body>
