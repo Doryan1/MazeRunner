@@ -81,28 +81,28 @@
             newY: 0
         }
 
-        //function checkColi() {
-        //let b;
-        /*for (i = 0; i < 10; i++) {
-            for (j = 0; j < 12; j++)
-                b = collbox[i][j];
+        function checkColi() {
+            let b;
+            for (i = 0; i < 10; i++) {
+                for (j = 0; j < 11; j++)
+                    b = collbox[i][j];
 
-            if (player.newX === b.x && player.newY === b.y) {
-                if (b.status === 1) {
-                    console.log('hit rock');
-                } else if (b.status === -1) {
-                    console.log('WIn');
-                    move(player.newY, player.newX);
-                } else {
-                    move(player.newY, player.newX);
+                if (player.newX === b.x && player.newY === b.y) {
+                    if (b.status === 1) {
+                        console.log('hit rock');
+                    } else if (b.status === -1) {
+                        console.log('WIn');
+                        move(player.newY, player.newX);
+                    } else {
+                        move(player.newY, player.newX);
+                    }
+
+                } else if (player.newX < 0 || player.newX > 450 || player.newY < 0 || player.newY > 550) {
+                    console.log('hit walllllll!');
                 }
-
-            } else if (player.newX < 0 || player.newX > 80 && player.newY < 0 || player.newY > 40) {
-                console.log('hit walllllll!');
             }
+        }
 
-
-        }*/
 
         window.onkeydown = function(e) {
             if (e.keyCode === 38) {
@@ -125,7 +125,7 @@
                 player.newY = player.y;
                 console.log('right');
             }
-            //checkColi();
+            checkColi();
             move(player.newX, player.newY);
             console.log(player);
         }
