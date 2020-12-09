@@ -1,4 +1,4 @@
-var firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyBEyvsq7EGO24ksZMVMRL5CyJBWmmpQ7KE",
     authDomain: "maze-runner-587ba.firebaseapp.com",
     projectId: "maze-runner-587ba",
@@ -10,29 +10,41 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   
-  // save the data
-  $("#signup-form").submit(function(e) {
+  // start
+  console.log("Start...");
+  
+  // Sign up when user clicks the button
+  $('#signup-form').submit(function(e){
     e.preventDefault();
-    //get the username(email) and password from the form
-    // change the following code
-    var email = "yilianz4@gmail.com";
-    var password = "ddsgagafda";
+    console.log("Submit button clicked.")
+    
+    // use the provided sign in
+    let input2 = $("form").serializeArray();
+    console.log(input2);
+    let inputJson = {};
   
-    // create a user with email address and password
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(user => {
-        // Signed in
-        // ...
+    for(let i = 0; i < input2.length; i++){
+      let name = input2[i]["name"];
+      let value = input2[i]["value"];
+      console.log(name + " " + value);
+      inputJson[name] = value;
+    }
   
-        console.log("You are signed up");
-        window.location.href = "Login.html";
-      })
-      .catch(error => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(error.code);
-        console.log(errorMessage);
-      });
+    // HW read the data from the form
+    console.log(inputJson["username"]);
+    let email = inputJson["username"];
+    let psw = inputJson["password"]
+  
+    firebase.auth().createUserWithEmailAndPassword(email, psw)
+    .then(user => {
+      console.log("success");
+      
+    })
+    .catch(error =>{
+      console.log(error.code);
+      console.log(error.message);
+    });
+  
+  
+  
   });
