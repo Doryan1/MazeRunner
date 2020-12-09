@@ -1,4 +1,4 @@
-var firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyBEyvsq7EGO24ksZMVMRL5CyJBWmmpQ7KE",
     authDomain: "maze-runner-587ba.firebaseapp.com",
     projectId: "maze-runner-587ba",
@@ -10,34 +10,39 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   
-  // save the data
-  $("#Login").submit(function(e) {
+  $("#Login").submit(function(e){
     e.preventDefault();
-    // get the user name and password from form
-    // You need to change this. 
-    var email = "doryan@usca.edu";
-    var password = "taco";
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(success => {
-        // Signed in
-        // ...
-        console.log("login in");
-        let user = firebase.auth().currentUser;
   
-        //user.updateProfile({ displayName: "Not sure" });
-        if (user != null) {
-          name = user.displayName;
-          email = user.email;
-          photoUrl = user.photoURL;
-          emailVerified = user.emailVerified;
-          console.log(name + email + emailVerified);
-        }
-      })
-      .catch(error => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorMessage);
-      });
+    // Get username(email) and password from form
+    let theData = $("form").serializeArray();
+    console.log(theData);
+    let inputJson3 = {};
+  
+    for(let i = 0; i < theData.length; i++){
+      let logName = theData[i]["name"];
+      let logVal = theData[i]["value"];
+      console.log("LogName: " + logName + " " + logVal);
+      inputJson3[name] = logVal; 
+    }
+  
+    console.log("Login Name: " + inputJson3["login"]);
+  
+    let email2 = inputJson3["login"];
+    let password2 = inputJson3["pwd"]
+  
+    // sign in 
+    firebase.auth().signInWithEmailAndPassword(email2, password2)
+    .then(success => {
+      console.log("Login success");
+  
+      //optional
+      let user = firebase.auth().currentUser;
+      console.log("works " + user.displayName + " " + user.email + " " + user.emailVerified)
+      document.getElementById("../HTML/home.html").innerHTML ; 
+    })
+    .catch(error =>{
+      let errorMessage = error.message;
+      console.log(errorMessage);
+    }); 
+  
   });
