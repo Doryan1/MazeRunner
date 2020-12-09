@@ -1,36 +1,64 @@
 #canvas {
-    border: 10px solid black;
-  }
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  li {
-    float: left;
-    border-right: 1px solid #bbb;
-  }
-  li:last-child {
-    border-right: none;
-  }
-  
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  li a:hover {
-    background-color: #111;
-  }
-  *{
-    margin: 0 ; 
-    padding: 0 ; 
-    font-family: 'Bebas Neue', cursive;
-  }
-  
+  border: 10px solid black;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(0, 0, 0);
+}
+
+li {
+  float: left;
+  border-right: 1px solid #bbb;
+}
+li:last-child {
+  border-right: none;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+*{
+  margin: 0 ; 
+  padding: 0 ; 
+  font-family: "Lato", sans-serif
+}
+
+.btn {
+background-color: #ffd723;
+border: none;
+color: black;
+padding: 10px 25px;
+text-decoration: none;
+display: inline-block;
+font-size: 60px;
+font-weight: bolder;
+box-shadow: 10px 10px rgb(107, 109, 107);
+}
+
+.btn:hover {
+background-color: #000000;
+color: white;
+}
+
+.btn:active {
+background-color: #f1ffc5c0;
+transform: translateY(4px);
+box-shadow: 0 10px rgb(14, 14, 14);
+}
+
+.border {
+border-style: solid;
+border: #ffd000;
+border-width: 800px;
+}
