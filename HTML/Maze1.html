@@ -17,7 +17,7 @@
             <li class= "active"><a href="home.html">Home</a></li>
             <li><a href="Maze1.html">Maze 1</a></li>
             <li><a href="Maze2.html">Maze 2</a></li>
-            <li><a href="leader.html">Leaderboards</a></li>
+            <li><a href="Maze3.html">Maze 3</a></li>
             <li style="float:right"><a class="active" href="contactPage.html">Contact Us</a></li>
         </ul>
         </div>
@@ -87,43 +87,6 @@
             player.x = player.newX;
             player.y = player.newY;
         }
-
-        function createTimer(seconds) {
-    intervalVar = setInterval(function () {
-        makeWhite(mazeWidth, 0, canvas.width - mazeWidth, canvas.height);
-        if (seconds === 0) {
-            clearInterval(intervalVar);
-            window.removeEventListener("keydown", moveRect, true);
-            makeWhite(0, 0, canvas.width, canvas.height);
-            context.font = "40px Arial";
-            context.fillStyle = "red";
-            context.textAlign = "center";
-            context.textBaseline = "middle";
-            context.fillText("Time's up!", canvas.width / 2, canvas.height / 2);
-            return;
-        }
-        context.font = "20px Arial";
-        if (seconds <= 10 && seconds > 5) {
-            context.fillStyle = "orangered";
-        }
-        else if (seconds <= 5) {
-            context.fillStyle = "red";
-        }
-        else {
-            context.fillStyle = "green";
-        }
-        context.textAlign = "center";
-        context.textBaseline = "middle";
-        var minutes = Math.floor(seconds / 60);
-        var secondsToShow = (seconds - minutes * 60).toString();
-        if (secondsToShow.length === 1) {
-            secondsToShow = "0" + secondsToShow; // if the number of seconds is '5' for example, make sure that it is shown as '05'
-        }
-        context.fillText(minutes.toString() + ":" + secondsToShow, mazeWidth + 30, canvas.height / 2);
-        seconds--;
-    }, 1000);
-}
-
         let player = {
             x: 0,
             y: 0,
