@@ -38,13 +38,13 @@ ul {
   background-color: #ffd723;
   border: none;
   color: black;
-  padding: 10px 25px;
+  padding: 5px 15px;
   text-decoration: none;
   display: inline-block;
-  font-size: 60px;
+  font-size: 40px;
   font-weight: bolder;
   box-shadow: 10px 10px rgb(107, 109, 107);
-}
+  }
 
 .btn:hover {
   background-color: #000000;
