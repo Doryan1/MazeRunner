@@ -1,2 +1,1 @@
-# MazeRunner
-Final Project for CSCI225 
+https://doryan1.github.io/MazeRunner/
