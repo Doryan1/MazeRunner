@@ -170,7 +170,7 @@ form {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: rgb(173, 175, 76);
+    background-color:#ffd723;
     color: white;
   }
   .message form {
@@ -204,10 +204,10 @@ form {
     margin: 20px auto;
     display: inline-block;
     text-align: center;
-    background: #039be5;
+    background: #ffd723;
     text-transform: uppercase;
     text-decoration: none;
-    color: white;
+    color: black ; 
     padding: 16px;
     min-width: 100%;
     border-radius: 4px;
