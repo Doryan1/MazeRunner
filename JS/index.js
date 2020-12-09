@@ -11,7 +11,7 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   
   // save the data
-  $("#Login").submit(function(e) {
+  $("#index").submit(function(e) {
     e.preventDefault();
     // get the user name and password from form
     // You need to change this.
@@ -25,15 +25,9 @@ var firebaseConfig = {
         // ...
         console.log("login in");
         let user = firebase.auth().currentUser;
+        window.location.href = "home.html" ; 
   
         //user.updateProfile({ displayName: "Not sure" });
-        if (user != null) {
-          name = user.displayName;
-          email = user.email;
-          photoUrl = user.photoURL;
-          emailVerified = user.emailVerified;
-          console.log(name + email + emailVerified);
-        }
       })
       .catch(error => {
         var errorCode = error.code;
