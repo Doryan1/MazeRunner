@@ -2,10 +2,10 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="/css/maze1.css">
-    <link rel="script" href="/JS/maze1.js">
+    <link rel="stylesheet" href="/css/maze2.css">
+    <link rel="script" href="/JS/maze2.js">
     <title>
-        Esposito Maze
+        Doryan Broadwater
     </title>
 
 </head>
@@ -13,38 +13,41 @@
 <body bgcolor="red">
     <header>
         <div class="main">
-        <ul>
-            <li class= "active"><a href="home.html">Home</a></li>
-            <li><a href="Maze1.html">Maze 1</a></li>
-            <li><a href="Maze2.html">Maze 2</a></li>
-            <li><a href="leader.html">Leaderboards</a></li>
-            <li style="float:right"><a class="active" href="contactPage.html">Contact Us</a></li>
-        </ul>
+            <ul>
+                <li class= "active"><a href="home.html">Home</a></li>
+                <li><a href="Maze1.html">Maze 1</a></li>
+                <li><a href="Maze2.html">Maze 2</a></li>
+                <li><a href="Maze3.html">Maze 3</a></li>
+                <li style="float:right"><a class="active" href="contactPage.html">Contact Us</a></li>
+            </ul>
         </div>
     </header>
     <center>
         <BR>
         <BR>
-        <h1>Maze 1</h1>
+        <h1>Maze 2</h1>
         <canvas id="canvas" width="500px" height="600px">
         </canvas>
     </center>
+    <a href = "home.html">
+        <button class="btn" id="button1" type="button">Login</button>
+        </a>
     <script>
         let c = document.getElementById('canvas');
         let ctx = c.getContext('2d');
 
 
         let map = [ // 1s equal walls, 0s spaces moveable
-            [0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0,],
-            [0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0,],
-            [0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0],
-            [0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0],
-            [0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
-            [1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0],
-            [0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
-            [0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1],
-            [0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, -1],
+            [0 ,1 ,0 ,1 ,0 ,0 ,1 ,1 ,1 ,0 ,1 ,1],
+            [0 ,0 ,1 ,0 ,1 ,1 ,1 ,1 ,0 ,0 ,0 ,1],
+            [0 ,1 ,1 ,1 ,0 ,0 ,1 ,1 ,0 ,1 ,1 ,1],
+            [0 ,1 ,1 ,0 ,0 ,1 ,1 ,1 ,0 ,0 ,1 ,0],
+            [0 ,0 ,0 ,0 ,1 ,1 ,0 ,1 ,1 ,1 ,1 ,0],
+            [1 ,1 ,1 ,0 ,1 ,0 ,0 ,0 ,0 ,0 , 0,0],
+            [0 ,1 ,0 ,0 ,1 ,0 ,0 ,0 ,0 ,1 ,0 ,1],
+            [0 ,0 ,0 ,0 ,0 ,0 ,1 ,0 ,1 ,1 ,1 ,1],
+            [0 ,0 ,1 ,0 ,1 ,0 ,1 ,0 ,0 ,0 ,1 ,1],
+            [0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, -1],
 
         ];
 
@@ -87,43 +90,6 @@
             player.x = player.newX;
             player.y = player.newY;
         }
-
-        function createTimer(seconds) {
-    intervalVar = setInterval(function () {
-        makeWhite(mazeWidth, 0, canvas.width - mazeWidth, canvas.height);
-        if (seconds === 0) {
-            clearInterval(intervalVar);
-            window.removeEventListener("keydown", moveRect, true);
-            makeWhite(0, 0, canvas.width, canvas.height);
-            context.font = "40px Arial";
-            context.fillStyle = "red";
-            context.textAlign = "center";
-            context.textBaseline = "middle";
-            context.fillText("Time's up!", canvas.width / 2, canvas.height / 2);
-            return;
-        }
-        context.font = "20px Arial";
-        if (seconds <= 10 && seconds > 5) {
-            context.fillStyle = "orangered";
-        }
-        else if (seconds <= 5) {
-            context.fillStyle = "red";
-        }
-        else {
-            context.fillStyle = "green";
-        }
-        context.textAlign = "center";
-        context.textBaseline = "middle";
-        var minutes = Math.floor(seconds / 60);
-        var secondsToShow = (seconds - minutes * 60).toString();
-        if (secondsToShow.length === 1) {
-            secondsToShow = "0" + secondsToShow; // if the number of seconds is '5' for example, make sure that it is shown as '05'
-        }
-        context.fillText(minutes.toString() + ":" + secondsToShow, mazeWidth + 30, canvas.height / 2);
-        seconds--;
-    }, 1000);
-}
-
         let player = {
             x: 0,
             y: 0,
@@ -152,6 +118,7 @@
                 }
             }
         }
+        
 
 
         window.onkeydown = function(e) {
@@ -185,10 +152,5 @@
             drawMap(map);
             drawPlayer(0, 0)
         }
-        
-        drawMazeAndRectangle(425, 3); // added already
-window.addEventListener("keydown", moveRect, true); // added already
-createTimer(120); // add this line
-                  // 120 seconds -> 2 minutes
     </script>
 </body>
