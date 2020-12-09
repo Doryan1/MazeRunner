@@ -2,10 +2,11 @@
     margin: 0 ; 
     padding: 0 ; 
    font-family: 'Bebas Neue', cursive;
+   background-color: #cccccc;
 }
 
 header { 
-    background-color: rgb(255, 255, 255) ;
+    background-color: rgb(180, 0, 0) ;
     height: 100vh ; 
     background-size: auto;
     background-position: center;
@@ -17,6 +18,11 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #333;
+  }
+  #grad1 {
+    height: 200px;
+    background-color: #cccccc;
+    background-image: linear-gradient(red, yellow);
   }
   
   li {
