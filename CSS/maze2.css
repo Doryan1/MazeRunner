@@ -6,7 +6,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: rgb(0, 0, 0);
 }
 
 li {
@@ -32,4 +32,33 @@ li a:hover {
   margin: 0 ; 
   padding: 0 ; 
   font-family: "Lato", sans-serif
+}
+
+.btn {
+background-color: #ffd723;
+border: none;
+color: black;
+padding: 5px 15px;
+text-decoration: none;
+display: inline-block;
+font-size: 40px;
+font-weight: bolder;
+box-shadow: 10px 10px rgb(107, 109, 107);
+}
+
+.btn:hover {
+background-color: #000000;
+color: white;
+}
+
+.btn:active {
+background-color: #f1ffc5c0;
+transform: translateY(4px);
+box-shadow: 0 10px rgb(14, 14, 14);
+}
+
+.border {
+border-style: solid;
+border: #ffd000;
+border-width: 800px;
 }
